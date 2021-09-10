@@ -1,3 +1,19 @@
 from django.db import models
+# from django.contrib.auth.models import User
 
-# Create your models here.
+class Recipe(models.Model):
+    meal = models.CharField(max_length=100)
+    ingredient = models.CharField(max_length=50)
+    cost = models.IntegerField(default=0)
+
+
+class Ingredients(models.Model):
+    food = models.CharField(max_length=50)
+    unit_price = models.IntegerField(default=0)
+    inventory = models.IntegerField(default=0)
+
+
+class Purchase(models.Model):
+    menu_item = models.CharField(max_length=100)
+    date = models.DateField(auto_now=False, auto_now_add=False)
+    time = models.TimeField(auto_now=False, auto_now_add=False)

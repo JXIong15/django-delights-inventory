@@ -3,8 +3,8 @@ from django.db import models
 
 class Recipe(models.Model):
     meal = models.CharField(max_length=100)
-    ingredient = models.CharField(max_length=50)
-    cost = models.IntegerField(default=0)
+    ingredients = models.CharField(max_length=50)
+    cost = models.FloatField(default=0)
 
     def get_absolute_url(self):
         return '/recipe/list'
@@ -12,7 +12,7 @@ class Recipe(models.Model):
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=50)
-    unit_price = models.IntegerField(default=0)
+    unit_price = models.FloatField(default=0)
     inventory = models.IntegerField(default=0)
 
     def get_absolute_url(self):

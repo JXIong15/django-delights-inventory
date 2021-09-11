@@ -2,7 +2,7 @@
 {% block content %}
 <h2>Recipes</h2>
 <a href="{% url 'recipecreate' %}"><button class="btn">Add Recipe</button></a>
-<table id="">
+<table id="recipes">
  <tr>
    <th>Meal</th>
    <th>Ingredients</th>
@@ -10,7 +10,7 @@
    <th> </th>
    <th> </th>
  </tr>
- {% for recipes in recipe_list %}
+ {% for recipe in recipe_list %}
  <tr>
  <tr>
      <td>{{ recipe.meal }}</td>

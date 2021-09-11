@@ -25,51 +25,51 @@ class IngredientList(ListView):
 class PurchaseList(ListView):
     model = Purchase
 
-class RecipeCreate(LoginRequiredMixin, CreateView):
+class RecipeCreate(CreateView):
   model = Recipe
-  template_name = "vetoffice/Recipe_create_form.html"
+  template_name = "inventory/recipe_create_form.html"
   form_class = RecipeCreateForm
 
-class IngredientCreate(LoginRequiredMixin, CreateView):
+class IngredientCreate(CreateView):
   model=Ingredient
-  template_name = "vetoffice/Ingredient_create_form.html"
+  template_name = "inventory/ingredient_create_form.html"
   form_class = IngredientCreateForm
 
-class PurchaseCreate(LoginRequiredMixin, CreateView):
+class PurchaseCreate(CreateView):
   model=Purchase
-  template_name = "vetoffice/Purchase_create_form.html"
+  template_name = "inventory/purchase_create_form.html"
   form_class = PurchaseCreateForm
 
-  def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super().form_valid(form)
+#   def form_valid(self, form):
+#     form.instance.user = self.request.user
+#     return super().form_valid(form)
 
-class RecipeUpdate(LoginRequiredMixin, UpdateView):
+class RecipeUpdate(UpdateView):
   model = Recipe
-  template_name = "vetoffice/Recipe_update_form.html"
+  template_name = "inventory/recipe_update_form.html"
   form_class = RecipeUpdateForm
 
-class IngredientUpdate(LoginRequiredMixin, UpdateView):
+class IngredientUpdate(UpdateView):
   model = Ingredient
-  template_name = "vetoffice/Ingredient_update_form.html"
+  template_name = "inventory/ingredient_update_form.html"
   form_class = IngredientUpdateForm
 
-class PurchaseUpdate(LoginRequiredMixin, UpdateView):
+class PurchaseUpdate(UpdateView):
   model = Purchase
-  template_name = "vetoffice/Purchase_update_form.html"
+  template_name = "inventory/purchase_update_form.html"
   form_class = PurchaseUpdateForm
 
-class RecipeDelete(LoginRequiredMixin, DeleteView):
+class RecipeDelete(DeleteView):
   model = Recipe
-  template_name = "vetoffice/Recipe_delete_form.html"
-  success_url = "/Recipe/list"
+  template_name = "inventory/recipe_delete_form.html"
+  success_url = "/recipe/list"
 
-class IngredientDelete(LoginRequiredMixin, DeleteView):
+class IngredientDelete(DeleteView):
   model = Ingredient
-  template_name = "vetoffice/Ingredient_delete_form.html"
-  success_url = "/Ingredient/list"
+  template_name = "inventory/ingredient_delete_form.html"
+  success_url = "/ingredient/list"
 
-class PurchaseDelete(LoginRequiredMixin, DeleteView):
+class PurchaseDelete(DeleteView):
   model = Purchase
-  template_name = "vetoffice/Purchase_delete_form.html"
-  success_url = "/Purchase/list"
+  template_name = "inventory/purchase_delete_form.html"
+  success_url = "/purchase/list"

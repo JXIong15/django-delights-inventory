@@ -3,6 +3,12 @@
 
 <div>
     <h1>DJANGO DELIGHTS HOME</h1>
+
+    <div>
+        <a href="{% url 'recipelist' %}">Recipes</a>
+        <a href="{% url 'ingredientlist' %}">Ingredients</a>
+        <a href="{% url 'purchaselist' %}">Purchases</a>
+    </div>
 </div>
 
 {% endblock %}

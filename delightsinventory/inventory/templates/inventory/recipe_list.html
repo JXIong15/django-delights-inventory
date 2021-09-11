@@ -1,0 +1,24 @@
+{% extends './base.html' %}
+{% block content %}
+<h2>Appointments</h2>
+<!-- <a href="{% url 'recipecreate' %}"><button class="btn">Add Recipe</button></a> -->
+<table id="">
+ <tr>
+   <th>Meal</th>
+   <th>Ingredients</th>
+   <th>Cost</th>
+   <th> </th>
+   <th> </th>
+ </tr>
+ {% for appt in appointment_list %}
+ <tr>
+ <tr>
+     <td>{{ recipe.meal }}</td>
+     <td>{{ recipe.ingredients }}</td>
+     <td>{{ recipe.cost }}</td>
+     <!-- <td><a href="{% url 'recipeupdate' recipe.id%}"><button>Edit</button></a></td> -->
+     <td><a href="{% url 'recipedelete' recipe.id%}"><button>Delete</button></a></td>
+ </tr>
+ {% endfor %}
+</table>
+{% endblock %}

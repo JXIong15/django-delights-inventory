@@ -8,6 +8,9 @@ class Recipe(models.Model):
 
     def get_absolute_url(self):
         return '/recipe/list'
+    
+    def __str__(self):
+        return self.meal
 
 
 class Ingredient(models.Model):
@@ -18,6 +21,9 @@ class Ingredient(models.Model):
     def get_absolute_url(self):
         return '/ingredient/list'
 
+    def __str__(self):
+        return self.name
+
 
 class Purchase(models.Model):
     menu_item = models.CharField(max_length=100)
@@ -26,3 +32,6 @@ class Purchase(models.Model):
 
     def get_absolute_url(self):
         return '/purchase/list'
+    
+    def __str__(self):
+        return self.menu_item

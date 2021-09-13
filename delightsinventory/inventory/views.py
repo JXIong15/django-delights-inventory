@@ -10,32 +10,37 @@ from .forms import RecipeCreateForm, RecipeUpdateForm, IngredientCreateForm, Ing
 from django.urls import reverse_lazy
 # from django.contrib.auth.forms import UserCreationForm
 
-# Create your views here.
-def home(request):
-#   context = {"name": request.user}
-# return render(request, "inventory/home.html", context)
-  return render(request, "inventory/home.html")
+# class SignUp(CreateView):
+#   form_class = UserCreationForm
+#   success_url = reverse_lazy("login")
+#   template_name = "registration/signup.html"
 
-class RecipeList(ListView):
+@login_required
+def home(request):
+    context = {"name": request.user}
+    return render(request, "inventory/home.html", context)
+#   return render(request, "inventory/home.html")
+
+class RecipeList(LoginRequiredMixin, ListView):
     model = Recipe
 
-class IngredientList(ListView):
+class IngredientList(LoginRequiredMixin, ListView):
     model = Ingredient
 
-class PurchaseList(ListView):
+class PurchaseList(LoginRequiredMixin, ListView):
     model = Purchase
 
-class RecipeCreate(CreateView):
+class RecipeCreate(LoginRequiredMixin, CreateView):
   model = Recipe
   template_name = "inventory/recipe_create_form.html"
   form_class = RecipeCreateForm
 
-class IngredientCreate(CreateView):
+class IngredientCreate(LoginRequiredMixin, CreateView):
   model=Ingredient
   template_name = "inventory/ingredient_create_form.html"
   form_class = IngredientCreateForm
 
-class PurchaseCreate(CreateView):
+class PurchaseCreate(LoginRequiredMixin, CreateView):
   model=Purchase
   template_name = "inventory/purchase_create_form.html"
   form_class = PurchaseCreateForm
@@ -44,32 +49,32 @@ class PurchaseCreate(CreateView):
 #     form.instance.user = self.request.user
 #     return super().form_valid(form)
 
-class RecipeUpdate(UpdateView):
+class RecipeUpdate(LoginRequiredMixin, UpdateView):
   model = Recipe
   template_name = "inventory/recipe_update_form.html"
   form_class = RecipeUpdateForm
 
-class IngredientUpdate(UpdateView):
+class IngredientUpdate(LoginRequiredMixin, UpdateView):
   model = Ingredient
   template_name = "inventory/ingredient_update_form.html"
   form_class = IngredientUpdateForm
 
-class PurchaseUpdate(UpdateView):
+class PurchaseUpdate(LoginRequiredMixin, UpdateView):
   model = Purchase
   template_name = "inventory/purchase_update_form.html"
   form_class = PurchaseUpdateForm
 
-class RecipeDelete(DeleteView):
+class RecipeDelete(LoginRequiredMixin, DeleteView):
   model = Recipe
   template_name = "inventory/recipe_delete_form.html"
   success_url = "/recipe/list"
 
-class IngredientDelete(DeleteView):
+class IngredientDelete(LoginRequiredMixin, DeleteView):
   model = Ingredient
   template_name = "inventory/ingredient_delete_form.html"
   success_url = "/ingredient/list"
 
-class PurchaseDelete(DeleteView):
+class PurchaseDelete(LoginRequiredMixin, DeleteView):
   model = Purchase
   template_name = "inventory/purchase_delete_form.html"
   success_url = "/purchase/list"

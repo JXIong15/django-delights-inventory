@@ -7,6 +7,7 @@
    <th>Name</th>
    <th>Unit Price</th>
    <th>Inventory</th>
+   <th>Total Cost</th>
    <th> </th>
    <th> </th>
  </tr>
@@ -16,9 +17,15 @@
      <td>{{ ingredient.name }}</td>
      <td>{{ ingredient.unit_price }}</td>
      <td>{{ ingredient.inventory }}</td>
+     <td>{{ ingredient.ingredient_cost }}</td>
      <td><a href="{% url 'ingredientupdate' ingredient.id%}"><button>Edit</button></a></td>
      <td><a href="{% url 'ingredientdelete' ingredient.id%}"><button>Delete</button></a></td>
  </tr>
  {% endfor %}
 </table>
+
+<div>
+  <h3><span>Total Cost of Intentory:</span></h3>
+</div>
+
 {% endblock %}

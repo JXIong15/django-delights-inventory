@@ -6,6 +6,8 @@ class Recipe(models.Model):
     ingredients = models.CharField(max_length=50)
     cost = models.FloatField(default=0)
 
+
+
     def get_absolute_url(self):
         return '/recipe/list'
     
@@ -17,6 +19,9 @@ class Ingredient(models.Model):
     name = models.CharField(max_length=50)
     unit_price = models.FloatField(default=0)
     inventory = models.IntegerField(default=0)
+
+    def ingredient_cost(self):
+        return self.unit_price * self.inventory
 
     def get_absolute_url(self):
         return '/ingredient/list'

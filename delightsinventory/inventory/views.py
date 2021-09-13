@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout
 from .models import Recipe, Ingredient, Purchase
 from .forms import RecipeCreateForm, RecipeUpdateForm, IngredientCreateForm, IngredientUpdateForm, PurchaseCreateForm, PurchaseUpdateForm
+from .filters import PurchaseFilter
 
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
@@ -31,6 +32,11 @@ class IngredientList(LoginRequiredMixin, ListView):
 class PurchaseList(LoginRequiredMixin, ListView):
     model = Purchase
     template_name = "inventory/purchase_list.html"
+
+    def get_context_date(self, **kwargs):
+        context = super().get_contect_date(**kwargs)
+        context['filter'] = PurchaseFilter(self.request.GET, queryset = self.get_queryset())
+        return context
 
 class RecipeCreate(LoginRequiredMixin, CreateView):
   model = Recipe

@@ -1,24 +1,32 @@
 {% extends './base.html' %}
+
 {% block content %}
 <h2>Purchases</h2>
 <a href="{% url 'purchasecreate' %}"><button class="btn">Add Purchase</button></a>
+<form method="GET">
+  {{ filter.form }}
+  <button type="submit">Search</button>
+</form>
+
+
 <table id="purchases">
- <tr>
-   <th>Menu Item</th>
-   <th>Date</th>
-   <th>Time</th>
-   <th> </th>
-   <th> </th>
- </tr>
- {% for purchase in purchase_list %}
- <tr>
- <tr>
-     <td>{{ purchase.menu_item }}</td>
-     <td><a href="{% url 'purchasedate' %}"> {{ purchase.date }}</a></td>
-     <td>{{ purchase.time }}</td>
-     <td><a href="{% url 'purchaseupdate' purchase.id%}"><button>Edit</button></a></td>
-     <td><a href="{% url 'purchasedelete' purchase.id%}"><button>Delete</button></a></td>
- </tr>
- {% endfor %}
+  <tr>
+    <th>Menu Item</th>
+    <th>Date</th>
+    <th>Time</th>
+    <th> </th>
+    <th> </th>
+  </tr>
+  {% for purchase in purchase_list %}
+  <tr>
+  <tr>
+    <td>{{ purchase.menu_item }}</td>
+    <!-- NEED TO SAVE THIS PURCHASE DATE AS AN ID -->
+    <td>{{ purchase.date }}</td>
+    <td>{{ purchase.time }}</td>
+    <td><a href="{% url 'purchaseupdate' purchase.id%}"><button>Edit</button></a></td>
+    <td><a href="{% url 'purchasedelete' purchase.id%}"><button>Delete</button></a></td>
+  </tr>
+  {% endfor %}
 </table>
 {% endblock %}

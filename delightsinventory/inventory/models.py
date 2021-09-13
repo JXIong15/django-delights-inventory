@@ -41,6 +41,9 @@ class Purchase(models.Model):
     date = models.DateField(auto_now=False, auto_now_add=False)
     time = models.TimeField(auto_now=False, auto_now_add=False)
 
+    class Meta:
+        ordering = ["-date"]
+
     def day_revenue(self):
         return self.objects.aggregate(models.Sum("date"))
 

@@ -1,10 +1,19 @@
 <head>
     <!-- add CSS sheet -->
 </head>
+
 <body>
-<a href="{% url 'home' %}"><h1>Delights Inventory</h1></a>
-<!-- <h3>Welcome to Delights Inventory {{ name }}!</h3> -->
-<h3>DJANGO BASE</h3>
+    <a href="{% url 'home' %}">
+        <h1>Delights Inventory</h1>
+    </a>
+    <!-- <h3>Welcome to Delights Inventory {{ name }}!</h3> -->
+    {% if user.username %}
+        <a class="logout-button" href="{% url 'logout' %}">Log Out</a>
+    {% endif %}
+    <h3>DJANGO BASE</h3>
+    {% if user.username %}
+        <h4 class="header-greet">Welcome {{ user.username }}!</h4>
+    {% endif %}
     {% block content %}
     {% endblock %}
 </body>

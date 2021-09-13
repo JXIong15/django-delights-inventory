@@ -1,34 +1,36 @@
-from django.http.response import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import logout
 from .models import Recipe, Ingredient, Purchase
 from .forms import RecipeCreateForm, RecipeUpdateForm, IngredientCreateForm, IngredientUpdateForm, PurchaseCreateForm, PurchaseUpdateForm
 
 from django.urls import reverse_lazy
-# from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 
-# class SignUp(CreateView):
-#   form_class = UserCreationForm
-#   success_url = reverse_lazy("login")
-#   template_name = "registration/signup.html"
+class SignUp(CreateView):
+  form_class = UserCreationForm
+  success_url = reverse_lazy("login")
+  template_name = "registration/signup.html"
 
 @login_required
 def home(request):
     context = {"name": request.user}
     return render(request, "inventory/home.html", context)
-#   return render(request, "inventory/home.html")
 
 class RecipeList(LoginRequiredMixin, ListView):
     model = Recipe
+    template_name = "inventory/recipe_list.html"
 
 class IngredientList(LoginRequiredMixin, ListView):
     model = Ingredient
+    template_name = "inventory/ingredient_list.html"
 
 class PurchaseList(LoginRequiredMixin, ListView):
     model = Purchase
+    template_name = "inventory/purchase_list.html"
 
 class RecipeCreate(LoginRequiredMixin, CreateView):
   model = Recipe
@@ -78,3 +80,7 @@ class PurchaseDelete(LoginRequiredMixin, DeleteView):
   model = Purchase
   template_name = "inventory/purchase_delete_form.html"
   success_url = "/purchase/list"
+
+def logout_request(request):
+  logout(request)
+  return redirect("home")

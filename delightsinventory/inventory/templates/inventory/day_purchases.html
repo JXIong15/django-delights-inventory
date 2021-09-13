@@ -1,0 +1,23 @@
+{% extends './base.html' %}
+{% block content %}
+<h3>DAY PURCHASES</h3>
+<table>
+    <thead>
+    </thead>
+    <tbody>
+        <tr>
+            <td>total sales:</td><td>${{totalsales}}</td>
+        </tr>
+        <tr>
+            <td>total cost:</td><td>${{totalcost}}</td>
+        </tr>
+        <tr class="total">
+            <td>profit(loss):</td><td>${{profitorloss}}</td>
+        </tr>
+
+    </tbody>
+</table>
+<!-- <p>total sales: ${{totalsales}}</p>
+<p>total cost: ${{totalcost}}</p>
+<p>profit(loss) ${{profitorloss}}</p> -->
+{% endblock %}

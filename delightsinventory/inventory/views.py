@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -33,9 +34,9 @@ class PurchaseList(LoginRequiredMixin, ListView):
     model = Purchase
     template_name = "inventory/purchase_list.html"
 
-    def get_context_date(self, **kwargs):
-        context = super().get_contect_date(**kwargs)
-        context['filter'] = PurchaseFilter(self.request.GET, queryset = self.get_queryset())
+    def search(self, **kwargs):
+        context = super().search(**kwargs)
+        context['filter'] = PurchaseFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
 class RecipeCreate(LoginRequiredMixin, CreateView):
